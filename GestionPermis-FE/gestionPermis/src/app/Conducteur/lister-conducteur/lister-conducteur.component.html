@@ -1,0 +1,35 @@
+<body>
+<div style="display: flex;
+justify-content: center;
+align-items: center;">
+<a href="#" role="button" class="outline">Ajouter conducteur</a>
+</div>
+<br>
+
+<div>
+<table role="grid">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id Conducteur</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Date de Naissance</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let u of c; index as i">
+        <th scope="row">{{i}}</th>
+        <td>{{u.id}}</td>
+        <td>{{u.nom}}</td>
+        <td>{{u.prenom}}</td>
+        <td>{{u.adresse}}</td>
+        <td>{{u.dateNaissance | date:'EEEE, MMMM d, y'}}</td>
+        <td> <button class="secondary">Details</button> <button>Edit</button> <button class="contrast">Delete</button></td>
+      </tr>
+    </tbody>
+    </table>
+    </div>
+</body>

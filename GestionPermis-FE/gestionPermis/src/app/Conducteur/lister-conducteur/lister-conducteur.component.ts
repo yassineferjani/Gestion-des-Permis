@@ -8,7 +8,7 @@ import { ConducteurService } from 'src/app/Services/conducteur.service';
   styleUrls: ['./lister-conducteur.component.css']
 })
 export class ListerConducteurComponent implements OnInit {
-  c!: Conducteur[];
+  conducteur!: Conducteur[];
   constructor(private service: ConducteurService, private router : Router) { }
 
   ngOnInit(): void {
@@ -17,18 +17,16 @@ export class ListerConducteurComponent implements OnInit {
   getallConducteur() {
     this.service.getConducteurs().subscribe({
       next: (response) => {
-        this.c = response;
-        console.log(response)
+        this.conducteur = response;
       },
       error: err => {
         console.log(err);
       }});
   }
 
-  delete(id :number){
-    this.service.deleteConducteur(id).subscribe({
+  delete(conducteur : Conducteur){
+    this.service.deleteConducteur(conducteur.id).subscribe({
       next: resp=>{
-        console.log(resp);
         this.getallConducteur();
       },
       error: err=>{

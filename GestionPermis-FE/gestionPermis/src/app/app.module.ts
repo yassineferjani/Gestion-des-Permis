@@ -9,6 +9,14 @@ import { ListerConducteurComponent } from './Conducteur/lister-conducteur/lister
 import { AjouterConducteurComponent } from './Conducteur/ajouter-conducteur/ajouter-conducteur.component';
 import { UpdateConducteurComponent } from './Conducteur/update-conducteur/update-conducteur.component';
 import { DetailConducteurComponent } from './Conducteur/detail-conducteur/detail-conducteur.component';
+import { AjouterPermisComponent } from './Permis/ajouter-permis/ajouter-permis.component';
+import { ListerPermisComponent } from './Permis/lister-permis/lister-permis.component';
+import { UpdatePermisComponent } from './Permis/update-permis/update-permis.component';
+import { DetailPermisComponent } from './Permis/detail-permis/detail-permis.component';
+import { AjouterContraventionComponent } from './Contravention/ajouter-contravention/ajouter-contravention.component';
+import { ListerContraventionComponent } from './Contravention/lister-contravention/lister-contravention.component';
+import { UpdateContraventionComponent } from './Contravention/update-contravention/update-contravention.component';
+import { DetailContraventionComponent } from './Contravention/detail-contravention/detail-contravention.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +24,15 @@ import { DetailConducteurComponent } from './Conducteur/detail-conducteur/detail
     ListerConducteurComponent,
     AjouterConducteurComponent,
     UpdateConducteurComponent,
-    DetailConducteurComponent
+    DetailConducteurComponent,
+    AjouterPermisComponent,
+    ListerPermisComponent,
+    UpdatePermisComponent,
+    DetailPermisComponent,
+    AjouterContraventionComponent,
+    ListerContraventionComponent,
+    UpdateContraventionComponent,
+    DetailContraventionComponent
   ],
   imports: [
     BrowserModule,

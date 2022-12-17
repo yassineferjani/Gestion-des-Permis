@@ -13,9 +13,9 @@ import { ListerConducteurComponent } from '../lister-conducteur/lister-conducteu
 export class AjouterConducteurComponent implements OnInit {
   myform: FormGroup;
   message!: String;
+  conducteur! : Conducteur;
   constructor(private service: ConducteurService, private fb: FormBuilder,private route: Router) {
     let formControls = {
-      //id: new FormControl('', [Validators.required]),
       nom: new FormControl('', [Validators.required]),
       prenom: new FormControl('', [Validators.required]),
       adresse: new FormControl('', [Validators.required]),
@@ -24,25 +24,25 @@ export class AjouterConducteurComponent implements OnInit {
     this.myform = this.fb.group(formControls);
    }
    
-   conducteur! : Conducteur;
+
   ngOnInit(): void {
   }
 
   saveConducteur() {
-
-    this.service.AddConducteur(this.myform.value).subscribe(
-      resp => {
+    
+    this.service.AddConducteur(this.myform.value).subscribe({
+      next:resp => {
         this.conducteur=this.myform.value;
         console.log(this.conducteur)
         this.message = "Success !";
         this.route.navigateByUrl("/allConducteur")
 
       },
-      error => {
+      error:error => {
         console.log(error);
         this.message = 'error';
       }
-    );
+  });
   }
 
 

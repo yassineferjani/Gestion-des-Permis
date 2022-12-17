@@ -1,38 +1,39 @@
 <form [formGroup]="myform" (ngSubmit)="saveConducteur()">
 
-    <!-- Grid -->
-    <div class="grid">
-      <!--<label for="id">
+  <!-- Grid -->
+  <div class="grid">
+    <!--<label for="id">
         Numero de Carte d'Identité Nationale
         <input type="text" id="id" name="id" placeholder="CIN">
       </label>
     -->
-      <label for="nom">
-        Nom
-        <input type="text" id="nom" name="nom" placeholder="nom" formControlName="nom">
-      </label>
-  
-    </div>
+    <label for="nom">
+      Nom
+      <input type="text" id="nom" name="nom" placeholder="nom" formControlName="nom">
+    </label>
 
-    <div class="grid">
-  
-        <label for="prenom">
-          Prénom
-          <input type="text" id="prenom" name="prenom" placeholder="Prenom" formControlName="prenom">
-        </label>
-    
-        <label for="dateNaissance">
-          Date de Naissance
-          <input type="date" id="dateNaissance" name="dateNaissance" formControlName="dateNaissance" >
-        </label>
-    
-      </div>
-  
-    <!-- Markup example 2: input is after label -->
-    <label for="adresse">Adresse</label>
+    <label for="prenom">
+      Prénom
+      <input type="text" id="prenom" name="prenom" placeholder="Prenom" formControlName="prenom">
+    </label>
+
+  </div>
+
+  <div class="grid">
+
+
+    <label for="dateNaissance">
+      Date de Naissance
+      <input type="date" id="dateNaissance" name="dateNaissance" formControlName="dateNaissance">
+    </label>
+    <label for="adresse">
+      Adresse
     <input type="text" id="adresse" name="adresse" placeholder="adresse" formControlName="adresse">
-  
-    <!-- Button -->
-    <button  type="submit">Submit</button>
-  
-  </form>
+  </label>
+  </div>
+
+
+  <!-- Button -->
+  <button type="submit">Submit</button>
+
+</form>

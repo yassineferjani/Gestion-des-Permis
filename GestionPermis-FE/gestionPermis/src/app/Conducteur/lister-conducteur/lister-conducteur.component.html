@@ -20,14 +20,14 @@ align-items: center;">
       </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="let u of c; index as i">
+      <tr  *ngFor="let u of conducteur; index as i">
         <th scope="row">{{i}}</th>
         <td>{{u.id}}</td>
         <td>{{u.nom}}</td>
         <td>{{u.prenom}}</td>
         <td>{{u.adresse}}</td>
         <td>{{u.dateNaissance | date:'EEEE, MMMM d, y'}}</td>
-        <td> <button (click)="detail(u)" class="secondary">Details</button> <button (click)="edit(u)">Edit</button> <button class="contrast" (click)="delete(u.id)">Delete</button></td>
+        <td> <button (click)="detail(u)" class="secondary">Details</button> <button (click)="edit(u)">Edit</button> <button class="contrast" (click)="delete(u)">Delete</button></td>
       </tr>
     </tbody>
     </table>

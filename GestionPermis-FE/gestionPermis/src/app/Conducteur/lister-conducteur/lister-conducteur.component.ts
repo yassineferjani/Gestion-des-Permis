@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Conducteur } from "src/app/Models/Conducteur";
 import { ConducteurService } from 'src/app/Services/conducteur.service';
 @Component({
@@ -8,20 +9,41 @@ import { ConducteurService } from 'src/app/Services/conducteur.service';
 })
 export class ListerConducteurComponent implements OnInit {
   c!: Conducteur[];
-  constructor(private service: ConducteurService) { }
+  constructor(private service: ConducteurService, private router : Router) { }
 
   ngOnInit(): void {
-   this.getallcar() 
+   this.getallConducteur() 
   }
-  getallcar() {
-    this.service.getConducteurs().subscribe(
-      response => {
+  getallConducteur() {
+    this.service.getConducteurs().subscribe({
+      next: (response) => {
         this.c = response;
         console.log(response)
       },
-      err => {
+      error: err => {
         console.log(err);
-      });
+      }});
   }
+
+  delete(id :number){
+    this.service.deleteConducteur(id).subscribe({
+      next: resp=>{
+        console.log(resp);
+        this.getallConducteur();
+      },
+      error: err=>{
+        console.log(err);
+      }}
+    );
+
+  }
+
+  detail(conducteur : Conducteur){
+    this.router.navigateByUrl("/detailConducteur/"+conducteur.id);
+  }
+
+  edit(conducteur : Conducteur){
+    this.router.navigateByUrl("/editConducteur/"+conducteur.id);
+   } 
 
 }

@@ -1,5 +1,5 @@
 export interface Conducteur {
-    id: string;
+    id: number;
     nom: string;
     prenom: string;
     adresse: string;

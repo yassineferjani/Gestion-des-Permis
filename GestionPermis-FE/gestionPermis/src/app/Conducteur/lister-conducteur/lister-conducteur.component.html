@@ -2,7 +2,7 @@
 <div style="display: flex;
 justify-content: center;
 align-items: center;">
-<a href="#" role="button" class="outline">Ajouter conducteur</a>
+<a href="/addConducteur" role="button" class="outline">Ajouter conducteur</a>
 </div>
 <br>
 
@@ -27,7 +27,7 @@ align-items: center;">
         <td>{{u.prenom}}</td>
         <td>{{u.adresse}}</td>
         <td>{{u.dateNaissance | date:'EEEE, MMMM d, y'}}</td>
-        <td> <button class="secondary">Details</button> <button>Edit</button> <button class="contrast">Delete</button></td>
+        <td> <button (click)="detail(u)" class="secondary">Details</button> <button (click)="edit(u)">Edit</button> <button class="contrast" (click)="delete(u.id)">Delete</button></td>
       </tr>
     </tbody>
     </table>

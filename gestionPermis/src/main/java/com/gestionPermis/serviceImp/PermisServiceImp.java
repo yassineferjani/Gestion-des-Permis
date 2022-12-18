@@ -28,6 +28,13 @@ public class PermisServiceImp implements PermisService {
 	@Override
 	public void addPermis(Permis permis) {
 		permisRepository.save(permis);
+		/*
+		Conducteur conducteur = conducteurRepository.findById(permis.getConducteur().getId()).
+				orElseThrow(()->new ConducteurNotFoundException());
+		if (conducteur != null){
+			conducteur.setPermis(Stream.of(permis).collect(Collectors.toList()));
+			conducteurRepository.save(conducteur);
+		}*/
 	}
 
 	@Override

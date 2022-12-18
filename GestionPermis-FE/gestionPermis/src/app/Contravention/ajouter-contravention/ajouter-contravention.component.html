@@ -22,12 +22,12 @@
         </label>
     
         <!-- Select -->
-        <label for="permis">Permis</label>
+        <label for="permis">Permis
         <select formControlName="permis" (change)="selectChangeHandler($event)">
         <option value="" selected>Choisir un Permis</option>
         <option *ngFor="let u of permis; index as i" value="{{u.id}}">{{u.id}} </option>
         </select>
-
+      </label>
 
       </div>
   

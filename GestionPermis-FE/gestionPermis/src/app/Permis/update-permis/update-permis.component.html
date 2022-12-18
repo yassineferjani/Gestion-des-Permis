@@ -23,19 +23,19 @@
         </label>
     
         <!-- Select -->
-        <label for="conducteur">Conducteur</label>
-        <select formControlName="conducteur" (change)="selectChangeHandler($event)">
-        <option value="" selected>Choisir un conducteur</option>
-        <option *ngFor="let u of conducteurs; index as i" value="{{u.id}}">{{u.id}} </option>
+        <label for="conducteur">Conducteur
+        <select formControlName="conducteur" (change)="selectChangeHandler($event)" [(ngModel)]="permis.conducteur.id">
+        <option value="">Choisir un conducteur</option>
+        <option *ngFor="let u of conducteurs; index as i" value="{{u.id}}"  >{{u.id}} </option>
         </select>
+      </label>
 
-
-        <label for="type">Type</label>
-        <select formControlName="type">
+        <label for="type">Type
+        <select formControlName="type" [(ngModel)]="permis.type">
         <option value="" selected>Type de permis</option>
-        <option *ngFor="let type of types | keyvalue" [ngValue]="type.value">{{type.value}}</option>
+        <option *ngFor="let type of types | keyvalue"  [ngValue]="type.value">{{type.value}}</option>
         </select>
-
+      </label>
       </div>
   
     <!-- Button -->

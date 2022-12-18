@@ -38,7 +38,19 @@ public class ContraventionServiceImp implements ContraventionService {
 
 	@Override
 	public void updateContravention(Contravention contravention) {
-		contraventionRepository.save(contravention);
+		Permis permis = permisRepository.findById(c.getPermis().getId()).orElseThrow(()-> new PermisNotFoundException());
+		if (permis == null) {
+			throw new PermisNotFoundException();
+			}
+		Contravention contravention = contraventionRepository.findById(c.getId()).orElseThrow(()-> new ContraventionNotFoundException());
+		if(permis.getPoints()+contravention.getRetaitPoints()>= c.getRetaitPoints()) {
+			permis.setPoints(permis.getPoints()+contravention.getRetaitPoints() - c.getRetaitPoints());
+			contraventionRepository.save(c);
+			permisRepository.save(permis);
+			
+		}else {
+			throw new PointsinsufficientException();
+		}
 		
 	}
 

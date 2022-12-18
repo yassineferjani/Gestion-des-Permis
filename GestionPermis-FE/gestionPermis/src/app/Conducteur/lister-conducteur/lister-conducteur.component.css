@@ -1,5 +1,6 @@
 a:hover {
-    background-color: cyan;
+    background-color: hsl(195deg 85% 41%);
+    color: white;
   }
 button{
     padding: revert;

@@ -28,6 +28,7 @@ const routes: Routes = [
   {path: 'addContravention', component:AjouterContraventionComponent},
   {path: 'editContravention/:id', component:UpdateContraventionComponent},
   {path: 'detailContravention/:id', component:DetailContraventionComponent},
+  {path: '', component: ListerConducteurComponent}
 ];
 
 

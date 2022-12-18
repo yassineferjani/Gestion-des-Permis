@@ -20,6 +20,7 @@ export class UpdateContraventionComponent implements OnInit {
   permis_!:Permis;
   permis!:Permis[];
   date!:any;
+  id!:any;
   
   constructor(private service: ContraventionService, private servicePermis:PermisService ,private fb: FormBuilder,private route: Router,
     private datePipe: DatePipe, private activatedRoute:ActivatedRoute) { 
@@ -32,10 +33,10 @@ export class UpdateContraventionComponent implements OnInit {
       this.myform = this.fb.group(formControls);
      }
   ngOnInit(): void {
-    let id=this.activatedRoute.snapshot.paramMap.get('id');
+    this.id=this.activatedRoute.snapshot.paramMap.get('id');
     this.getAllPermis()
-    
-  this.service.get1Contravention(id).subscribe({
+    this.getPermis(this.id)
+  this.service.get1Contravention(this.id).subscribe({
     next:(res)=>{
       this.contravention=res
       this.date = this.datePipe.transform(this.contravention.date,'yyyy-MM-dd')

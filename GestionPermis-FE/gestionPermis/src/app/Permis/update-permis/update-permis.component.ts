@@ -22,6 +22,7 @@ export class UpdatePermisComponent implements OnInit {
   idConducteur!:any;
   dateEmission!:any;
   dateExpiration!:any;
+  id!:any;
   
   constructor(private service: PermisService, private serviceConducteur:ConducteurService ,private fb: FormBuilder,private route: Router,
     private datePipe: DatePipe, private activatedRoute:ActivatedRoute) { 
@@ -38,11 +39,11 @@ export class UpdatePermisComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    let id=this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(id)
+    this.id=this.activatedRoute.snapshot.paramMap.get('id');
     this.getAllConducteurs()
+    this.getConducteur(this.id)
     
-  this.service.get1Permis(id).subscribe({
+  this.service.get1Permis(this.id).subscribe({
     next:(res)=>{
       this.permis=res
       this.dateEmission = this.datePipe.transform(this.permis.dateEmission,'yyyy-MM-dd')

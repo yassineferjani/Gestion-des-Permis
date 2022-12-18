@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gestionPermis.dto.PermisDTO;
 import com.gestionPermis.models.Permis;
 import com.gestionPermis.services.PermisService;
 @CrossOrigin("*")
@@ -26,23 +27,23 @@ public class PermisController {
 	private PermisService permisService;
 	
 	@GetMapping("/all")
-	public ResponseEntity<List<Permis>> getAllPermis(){
-		List<Permis> permis = permisService.listPermis();
+	public ResponseEntity<List<PermisDTO>> getAllPermis(){
+		List<PermisDTO> permis = permisService.listPermis();
 		return new ResponseEntity<>(permis, HttpStatus.OK);
 	}
 	
 	@GetMapping("/permis/{id}")
-	public ResponseEntity<Permis> getPermis(@PathVariable Long id){
+	public ResponseEntity<PermisDTO> getPermis(@PathVariable Long id){
 		return new ResponseEntity<>(permisService.getPermis(id),HttpStatus.OK);
 	}
 	
 	@PostMapping("/add")
-	public void addPermis(@RequestBody Permis permis){
+	public void addPermis(@RequestBody PermisDTO permis){
 		permisService.addPermis(permis);	
 	}
 	
 	@PutMapping("/update")
-	public void updatePermis(@RequestBody Permis permis){
+	public void updatePermis(@RequestBody PermisDTO permis){
 		permisService.updatePermis(permis);
 	}
 	

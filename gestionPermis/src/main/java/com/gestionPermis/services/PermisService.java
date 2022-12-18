@@ -2,16 +2,16 @@ package com.gestionPermis.services;
 
 import java.util.List;
 
-import com.gestionPermis.models.Permis;
+import com.gestionPermis.dto.PermisDTO;
 
 
 
 public interface PermisService {
 			
-	List<Permis> listPermis();
-	Permis getPermis(Long id);
-	void addPermis(Permis permis);
-	void updatePermis(Permis permis);
+	List<PermisDTO> listPermis();
+	PermisDTO getPermis(Long id);
+	void addPermis(PermisDTO permis);
+	void updatePermis(PermisDTO permis);
 	void deletePermis (Long id);
 
 }

@@ -49,8 +49,7 @@ public class GestionPermisApplication {
 				permisRepository.save(permis);
 				
 			});
-			
-			permisRepository.findAll().forEach(p->{
+				permisRepository.findAll().forEach(p->{
 				Contravention contra= new Contravention();
 				contra.setDate(new Date());
 				contra.setId(p.getConducteur().getId());

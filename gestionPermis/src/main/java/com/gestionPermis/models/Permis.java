@@ -30,7 +30,6 @@ public class Permis {
 	private int points;
 	@ManyToOne
 	private Conducteur conducteur;
-	@JsonIgnore
 	@OneToMany(mappedBy = "permis",cascade = CascadeType.ALL)
 	private List<Contravention> contraventions;
 	

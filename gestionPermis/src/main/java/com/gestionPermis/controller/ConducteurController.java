@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gestionPermis.dto.ConducteurDTO;
 import com.gestionPermis.models.Conducteur;
 import com.gestionPermis.services.ConducteurService;
 @CrossOrigin("*")
@@ -26,23 +27,23 @@ public class ConducteurController {
 	private ConducteurService conducteurService;
 	
 	@GetMapping("/all")
-	public ResponseEntity<List<Conducteur>> getAllConducteurs(){
-		List<Conducteur> conducteurs = conducteurService.listConducteurs();
+	public ResponseEntity<List<ConducteurDTO>> getAllConducteurs(){
+		List<ConducteurDTO> conducteurs = conducteurService.listConducteurs();
 		return new ResponseEntity<>(conducteurs, HttpStatus.OK);
 	}
 	
 	@GetMapping("/conducteur/{id}")
-	public ResponseEntity<Conducteur> getConducteur(@PathVariable Long id){
+	public ResponseEntity<ConducteurDTO> getConducteur(@PathVariable Long id){
 		return new ResponseEntity<>(conducteurService.getConducteur(id),HttpStatus.OK);
 	}
 	
 	@PostMapping(value="/add")
-	public void addConducteur(@RequestBody Conducteur conducteur){
+	public void addConducteur(@RequestBody ConducteurDTO conducteur){
 		conducteurService.addConducteur(conducteur);		
 	}
 	
 	@PutMapping("/update")
-	public void updateConducteur(@RequestBody Conducteur conducteur){
+	public void updateConducteur(@RequestBody ConducteurDTO conducteur){
 		conducteurService.updateConducteur(conducteur);
 	}
 	

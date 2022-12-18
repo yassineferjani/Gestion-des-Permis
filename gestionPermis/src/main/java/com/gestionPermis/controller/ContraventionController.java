@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gestionPermis.dto.ContraventionDTO;
 import com.gestionPermis.models.Contravention;
 import com.gestionPermis.services.ContraventionService;
 @CrossOrigin("*")
@@ -26,24 +27,24 @@ public class ContraventionController {
 	private ContraventionService contraventionService;
 	
 	@GetMapping("/all")
-	public ResponseEntity<List<Contravention>> getAllContravention(){
-		List<Contravention> contraventions = contraventionService.listContravention();
+	public ResponseEntity<List<ContraventionDTO>> getAllContravention(){
+		List<ContraventionDTO> contraventions = contraventionService.listContravention();
 		return new ResponseEntity<>(contraventions, HttpStatus.OK);
 	}
 	
 	@GetMapping("/contravention/{id}")
-	public ResponseEntity<Contravention> getConducteur(@PathVariable Long id){
+	public ResponseEntity<ContraventionDTO> getConducteur(@PathVariable Long id){
 		return new ResponseEntity<>(contraventionService.getContravention(id),HttpStatus.OK);
 	}
 	
 	@PostMapping("/add")
 	
-	public void addConducteur (@RequestBody Contravention c){
+	public void addConducteur (@RequestBody ContraventionDTO c){
 		contraventionService.addContravention(c);
 	}
 	
 	@PutMapping("/update")
-	public void updateContravention(@RequestBody Contravention contravention){
+	public void updateContravention(@RequestBody ContraventionDTO contravention){
 		contraventionService.updateContravention(contravention);
 	}
 	

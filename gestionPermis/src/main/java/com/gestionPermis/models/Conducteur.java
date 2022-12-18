@@ -26,7 +26,6 @@ public class Conducteur {
 	private String prenom;
 	private String adresse;
 	private Date dateNaissance;
-	@JsonIgnore
 	@OneToMany(mappedBy = "conducteur",cascade =CascadeType.ALL)
 	private List<Permis> permis;
 

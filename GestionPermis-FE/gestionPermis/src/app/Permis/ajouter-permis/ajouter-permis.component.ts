@@ -25,13 +25,15 @@ export class AjouterPermisComponent implements OnInit {
     let formControls = {
       type: new FormControl("", [Validators.required]),
       dateEmission: new FormControl('', [Validators.required]),
-      dateExpiration: new FormControl('', [Validators.required]),
-      points: new FormControl('', [Validators.required]),
+      dateExpiration: new FormControl(''),
+      points: new FormControl('10000', [Validators.required]),
       conducteur: new FormControl('', [Validators.required]),
 
     };
+    
     this.types = Object.keys(Type).filter(key => isNaN(+key));
     this.myform = this.fb.group(formControls);
+
 
    }
 
@@ -88,5 +90,6 @@ export class AjouterPermisComponent implements OnInit {
       
     })
   }
+  
 
 }

@@ -24,7 +24,7 @@ public class GestionPermisApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GestionPermisApplication.class, args);
 	}
-	@Bean
+	
 	
 	CommandLineRunner start(ConducteurRepository conducteurRepository, PermisRepository permisRepository, ContraventionRepository contraventionRepository) {
 		return args ->{

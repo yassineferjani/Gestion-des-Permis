@@ -55,7 +55,7 @@ public class ContraventionServiceImp implements ContraventionService {
 			permis.setPoints(permis.getPoints()+contravention.getRetaitPoints() - c.getRetaitPoints());
 			contraventionRepository.save(contraventionDTO.getContraventionFromContraventionDTO(c));
 			permisRepository.save(permis);
-			
+
 		}else {
 			throw new PointsinsufficientException();
 		}
@@ -65,6 +65,11 @@ public class ContraventionServiceImp implements ContraventionService {
 
 	@Override
 	public void deleteContravention(Long id) {
+		Contravention c = contraventionRepository.findById(id).orElseThrow(()-> new ContraventionNotFoundException());
+		Permis permis = permisRepository.findById(c.getPermis().getId()).orElseThrow(()-> new PermisNotFoundException());
+		if (permis == null) {
+			permis.setPoints(permis.getPoints()+c.getRetaitPoints());
+			permisRepository.save(permis);}
 		contraventionRepository.deleteById(id);
 	}
 

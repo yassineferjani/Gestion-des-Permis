@@ -1,5 +1,6 @@
 package com.gestionPermis.serviceImp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -41,24 +42,18 @@ public class PermisServiceImp implements PermisService {
 	@Override
 	public void addPermis(PermisDTO permis) {
 		permisRepository.save(dtoImp.getPermisFromPermisDTO(permis));
-		
-		/*
-		Conducteur conducteur = conducteurRepository.findById(permis.getConducteur().getId()).
-				orElseThrow(()->new ConducteurNotFoundException());
-		if (conducteur != null){
-			conducteur.setPermis(Stream.of(permis).collect(Collectors.toList()));
-			conducteurRepository.save(conducteur);
-		}*/
+
 	}
 
 	@Override
 	public void updatePermis(PermisDTO permis) {
 		permisRepository.save(dtoImp.getPermisFromPermisDTO(permis));
-	}
+	
+		}
 
 	@Override
 	public void deletePermis(Long id) {
 		permisRepository.deleteById(id);
 	}
-
+	
 }

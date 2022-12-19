@@ -17,7 +17,7 @@ export class AjouterPermisComponent implements OnInit {
   message!: String;
   permis !: Permis;
   conducteurs!: Conducteur[];
-  types!: Array<string>;
+  types: Array<string>;
   conducteur!:Conducteur;
   idConducteur!:any;
 

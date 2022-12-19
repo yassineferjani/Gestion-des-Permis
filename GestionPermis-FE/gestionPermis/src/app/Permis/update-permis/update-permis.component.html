@@ -26,7 +26,7 @@
         <label for="conducteur">Conducteur
         <select formControlName="conducteur" (change)="selectChangeHandler($event)" [(ngModel)]="permis.conducteur.id">
         <option value="">Choisir un conducteur</option>
-        <option *ngFor="let u of conducteurs; index as i" value="{{u.id}}"  >{{u.id}} </option>
+        <option *ngFor="let u of conducteurs; index as i" value="{{u.id}}"  >{{u.id + ' | '}}{{u.nom | uppercase}} {{" " +u.prenom}}</option>
         </select>
       </label>
 

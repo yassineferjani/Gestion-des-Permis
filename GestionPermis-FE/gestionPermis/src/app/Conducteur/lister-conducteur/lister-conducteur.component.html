@@ -19,16 +19,26 @@ align-items: center;">
         <th scope="col">Actions</th>
       </tr>
     </thead>
-    <tbody>
-      <tr  *ngFor="let u of conducteur; index as i">
-        <th scope="row">{{i}}</th>
-        <td>{{u.id}}</td>
-        <td>{{u.nom}}</td>
-        <td>{{u.prenom}}</td>
-        <td>{{u.adresse}}</td>
-        <td>{{u.dateNaissance | date:'EEEE, MMMM d, y'}}</td>
-        <td> <button (click)="detail(u)" class="secondary">Details</button> <button (click)="edit(u)">Edit</button> <button class="contrast" (click)="delete(u)">Delete</button></td>
-      </tr>
+    <tbody *ngIf="(response$ | async) as response">
+      <ng-container *ngIf="response.status==2">
+        <tr  *ngFor="let u of response.data.conducteurs; index as i">
+          <th scope="row">{{i}}</th>
+          <td>{{u.id}}</td>
+          <td>{{u.nom}}</td>
+          <td>{{u.prenom}}</td>
+          <td>{{u.adresse}}</td>
+          <td>{{u.dateNaissance | date:'EEEE, MMMM d, y'}}</td>
+          <td> <button (click)="detail(u)" class="secondary">Details</button> <button (click)="edit(u)">Edit</button> <button class="contrast" (click)="delete(u)">Delete</button></td>
+        </tr>
+      </ng-container>
+
+      <ng-container *ngIf="response.status==1">
+
+        <p>Chargement en cours</p>
+        
+      </ng-container>
+
+      
     </tbody>
     </table>
     </div>

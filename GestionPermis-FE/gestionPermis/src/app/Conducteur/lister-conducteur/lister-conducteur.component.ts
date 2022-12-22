@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, startWith, tap } from 'rxjs';
 import { Conducteur } from "src/app/Models/Conducteur";
+import { Response } from "src/app/Models/Response";
+
 import { ConducteurService } from 'src/app/Services/conducteur.service';
 @Component({
   selector: 'app-lister-conducteur',
@@ -8,13 +11,18 @@ import { ConducteurService } from 'src/app/Services/conducteur.service';
   styleUrls: ['./lister-conducteur.component.css']
 })
 export class ListerConducteurComponent implements OnInit {
-  conducteur!: Conducteur[];
+  response$!: Observable<Response>;
   constructor(private service: ConducteurService, private router : Router) { }
 
   ngOnInit(): void {
-   this.getallConducteur() 
+   //this.getallConducteur() 
+   this.response$=this.service.conducteurs$.pipe(
+    tap(console.log),
+    startWith({status:1} as Response)
+   );
   }
-  getallConducteur() {
+
+  /* getallConducteur() {
     this.service.getConducteurs().subscribe({
       next: (response) => {
         this.conducteur = response;
@@ -22,12 +30,12 @@ export class ListerConducteurComponent implements OnInit {
       error: err => {
         console.log(err);
       }});
-  }
+  } */
 
   delete(conducteur : Conducteur){
     this.service.deleteConducteur(conducteur.id).subscribe({
       next: resp=>{
-        this.getallConducteur();
+       // this.getallConducteur();
       },
       error: err=>{
         console.log(err);

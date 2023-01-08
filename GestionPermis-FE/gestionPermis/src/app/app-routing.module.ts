@@ -12,23 +12,29 @@ import { AjouterPermisComponent } from './Permis/ajouter-permis/ajouter-permis.c
 import { DetailPermisComponent } from './Permis/detail-permis/detail-permis.component';
 import { ListerPermisComponent } from './Permis/lister-permis/lister-permis.component';
 import { UpdatePermisComponent } from './Permis/update-permis/update-permis.component';
+import {LoginComponent} from './login/login.component';
+import { GuardGuard } from './Guard/guard.guard';
+
+
 
 const routes: Routes = [
-  {path: 'allConducteur', component:ListerConducteurComponent},
-  {path: 'addConducteur', component:AjouterConducteurComponent},
-  {path: 'editConducteur/:id', component:UpdateConducteurComponent},
-  {path: 'detailConducteur/:id', component:DetailConducteurComponent},
+  {path: 'allConducteur', component:ListerConducteurComponent, canActivate:[GuardGuard] },
+  {path: 'addConducteur', component:AjouterConducteurComponent, canActivate:[GuardGuard] },
+  {path: 'editConducteur/:id', component:UpdateConducteurComponent, canActivate:[GuardGuard] },
+  {path: 'detailConducteur/:id', component:DetailConducteurComponent, canActivate:[GuardGuard] },
 
-  {path: 'allPermis', component:ListerPermisComponent},
-  {path: 'addPermis', component:AjouterPermisComponent},
-  {path: 'editPermis/:id', component:UpdatePermisComponent},
-  {path: 'detailPermis/:id', component:DetailPermisComponent},
+  {path: 'allPermis', component:ListerPermisComponent, canActivate:[GuardGuard] },
+  {path: 'addPermis', component:AjouterPermisComponent, canActivate:[GuardGuard] },
+  {path: 'editPermis/:id', component:UpdatePermisComponent, canActivate:[GuardGuard] },
+  {path: 'detailPermis/:id', component:DetailPermisComponent, canActivate:[GuardGuard] },
 
-  {path: 'allContravention', component:ListerContraventionComponent},
-  {path: 'addContravention', component:AjouterContraventionComponent},
-  {path: 'editContravention/:id', component:UpdateContraventionComponent},
-  {path: 'detailContravention/:id', component:DetailContraventionComponent},
-  {path: '', component: ListerConducteurComponent}
+  {path: 'allContravention', component:ListerContraventionComponent, canActivate:[GuardGuard] },
+  {path: 'addContravention', component:AjouterContraventionComponent, canActivate:[GuardGuard] },
+  {path: 'editContravention/:id', component:UpdateContraventionComponent, canActivate:[GuardGuard] },
+  {path: 'detailContravention/:id', component:DetailContraventionComponent, canActivate:[GuardGuard]} ,
+
+  {path: 'login', component: LoginComponent},
+  {path: '', component: LoginComponent}
 ];
 
 

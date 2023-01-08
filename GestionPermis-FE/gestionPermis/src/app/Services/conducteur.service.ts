@@ -16,6 +16,7 @@ export class ConducteurService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })} 
+      id!:string;
     private errorMessage!:string;
     
       conducteurs$=<Observable<Response>>this.http.get<Array<Conducteur>>(this.host + '/all').pipe(
@@ -27,15 +28,25 @@ export class ConducteurService {
           return throwError(err);
         })
       );
+
+      conducteur$=<Observable<Response>>this.http.get<Conducteur>(this.host + "/conducteur/" + this.id).pipe(
+        map(response=>{
+          return{status:2 ,data:{conducteur: response}}as Response;
+        }),
+        catchError(err=>{
+          this.errorMessage=err.message;
+          return throwError(err);
+        })
+      );
       
-    getConducteurs(): Observable<Array<Conducteur>> {
+    /* getConducteurs(): Observable<Array<Conducteur>> {
       return this.http.get<Array<Conducteur>>(this.host + '/all').pipe(
         catchError(err=>{
           this.errorMessage=err.message;
           return throwError(err);
         })
       );
-    }
+    } */
 
     AddConducteur(conducteur: Conducteur): Observable<object> {
       return this.http.post(this.host + '/add', conducteur).pipe(
@@ -72,5 +83,5 @@ export class ConducteurService {
         })
       );
     }
-
+ 
 }

@@ -1,5 +1,6 @@
 package com.security.permis.controller;
 
+import com.security.permis.models.AppUser;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -7,6 +8,7 @@ import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
@@ -29,9 +31,9 @@ public class AuthController {
 
 
     @PostMapping("/token")
-    public Map<String,String> jwtToken(String username, String password){
+    public Map<String,String> jwtToken(@RequestBody AppUser user){
         Authentication authentication=authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(username,password)
+                new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPasswd())
         );
         Map<String,String> idToken= new HashMap<>();
         Instant instant = Instant.now();

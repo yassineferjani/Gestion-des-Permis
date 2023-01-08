@@ -4,9 +4,11 @@ import java.util.Date;
 
 import java.util.stream.Stream;
 
+import com.gestionPermis.security.RsaKeysConfig;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
 import com.gestionPermis.dao.ConducteurRepository;
@@ -15,17 +17,18 @@ import com.gestionPermis.dao.PermisRepository;
 import com.gestionPermis.models.Conducteur;
 import com.gestionPermis.models.Contravention;
 import com.gestionPermis.models.Permis;
-
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 
 @SpringBootApplication
+@EnableConfigurationProperties(RsaKeysConfig.class)
 public class GestionPermisApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GestionPermisApplication.class, args);
 	}
 	
-	
+	@Bean
 	CommandLineRunner start(ConducteurRepository conducteurRepository, PermisRepository permisRepository, ContraventionRepository contraventionRepository) {
 		return args ->{
 			

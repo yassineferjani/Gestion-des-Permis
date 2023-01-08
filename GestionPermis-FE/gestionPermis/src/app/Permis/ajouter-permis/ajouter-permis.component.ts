@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, startWith, tap } from 'rxjs';
 import { Conducteur } from 'src/app/Models/Conducteur';
 import { Permis, Type } from 'src/app/Models/Permis';
 import { ConducteurService } from 'src/app/Services/conducteur.service';
@@ -36,10 +37,15 @@ export class AjouterPermisComponent implements OnInit {
 
 
    }
+   response$!: Observable<Response>;
 
   ngOnInit(): void {
-    this.getAllConducteurs()
-  }
+    this.response$=this.serviceConducteur.conducteurs$.pipe(
+      tap(console.log),
+      startWith({status:1} as Response)
+     );
+    }
+  
 
   selectChangeHandler(event: any) {
     this.idConducteur = event.target.value;
@@ -65,7 +71,7 @@ export class AjouterPermisComponent implements OnInit {
       }
   });
   }
-
+/*
   getAllConducteurs(){
     this.serviceConducteur.getConducteurs().subscribe({
       next:resp=>{
@@ -76,7 +82,7 @@ export class AjouterPermisComponent implements OnInit {
         this.message= error;
       }
     })
-  }
+  }*/
 
   getConducteur(id : string){
     this.serviceConducteur.get1Conducteur(id).subscribe({

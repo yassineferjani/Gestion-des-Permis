@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, startWith, tap } from 'rxjs';
 import { Conducteur } from 'src/app/Models/Conducteur';
 import { Permis ,Type} from 'src/app/Models/Permis';
 import { ConducteurService } from 'src/app/Services/conducteur.service';
@@ -37,11 +38,14 @@ export class UpdatePermisComponent implements OnInit {
     this.types = Object.keys(Type).filter(key => isNaN(+key));
     this.myform = this.fb.group(formControls);
    }
-
+   response$!: Observable<Response>;
   ngOnInit(): void {
     this.id=this.activatedRoute.snapshot.paramMap.get('id');
-    this.getAllConducteurs()
     this.getConducteur(this.id)
+    this.response$=this.serviceConducteur.conducteurs$.pipe(
+      tap(console.log),
+      startWith({status:1} as Response)
+     );
     
   this.service.get1Permis(this.id).subscribe({
     next:(res)=>{
@@ -87,15 +91,5 @@ export class UpdatePermisComponent implements OnInit {
     this.idConducteur = event.target.value;
     this.getConducteur(this.idConducteur);
   }
-  getAllConducteurs(){
-    this.serviceConducteur.getConducteurs().subscribe({
-      next:resp=>{
-        this.conducteurs=resp;
-        return this.conducteur
-      },
-      error:error=>{
-        this.message= error;
-      }
-    })
-  }
+  
 }

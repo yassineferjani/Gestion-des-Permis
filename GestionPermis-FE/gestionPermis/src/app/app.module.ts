@@ -17,6 +17,9 @@ import { AjouterContraventionComponent } from './Contravention/ajouter-contraven
 import { ListerContraventionComponent } from './Contravention/lister-contravention/lister-contravention.component';
 import { UpdateContraventionComponent } from './Contravention/update-contravention/update-contravention.component';
 import { DetailContraventionComponent } from './Contravention/detail-contravention/detail-contravention.component';
+import { LoginComponent } from './login/login.component';
+import { tokenIntercept } from './Guard/token.interceptor';
+import { MenuComponent } from './View/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { DetailContraventionComponent } from './Contravention/detail-contraventi
     AjouterContraventionComponent,
     ListerContraventionComponent,
     UpdateContraventionComponent,
-    DetailContraventionComponent
+    DetailContraventionComponent,
+    LoginComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +45,15 @@ import { DetailContraventionComponent } from './Contravention/detail-contraventi
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    /* JwtModule.forRoot({
+      config: {
+        tokenGetter: getToken,
+        allowedDomains: ["http://127.0.0.1:8009"],
+        disallowedRoutes: [],
+      },
+    }), */
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, tokenIntercept],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

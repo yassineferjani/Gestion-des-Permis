@@ -20,6 +20,7 @@ import { DetailContraventionComponent } from './Contravention/detail-contraventi
 import { LoginComponent } from './login/login.component';
 import { tokenIntercept } from './Guard/token.interceptor';
 import { MenuComponent } from './View/menu/menu.component';
+import {LoginService} from './Services/login.service';
 
 @NgModule({
   declarations: [
@@ -45,15 +46,8 @@ import { MenuComponent } from './View/menu/menu.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    /* JwtModule.forRoot({
-      config: {
-        tokenGetter: getToken,
-        allowedDomains: ["http://127.0.0.1:8009"],
-        disallowedRoutes: [],
-      },
-    }), */
   ],
-  providers: [DatePipe, tokenIntercept],
+  providers: [DatePipe, tokenIntercept,LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,7 +19,6 @@ export class ListerContraventionComponent implements OnInit {
     this.service.getContraventions().subscribe({
       next: (response) => {
         this.contravention = response;
-        console.log(response)
       },
       error: err => {
         console.log(err);

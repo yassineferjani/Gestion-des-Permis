@@ -34,7 +34,7 @@ const routes: Routes = [
   {path: 'detailContravention/:id', component:DetailContraventionComponent, canActivate:[GuardGuard]} ,
 
   {path: 'login', component: LoginComponent},
-  {path: '', component: LoginComponent}
+  {path: '**', redirectTo:"login"}
 ];
 
 

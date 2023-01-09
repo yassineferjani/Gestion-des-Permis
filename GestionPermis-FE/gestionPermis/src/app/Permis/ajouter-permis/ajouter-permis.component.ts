@@ -60,7 +60,6 @@ export class AjouterPermisComponent implements OnInit {
 
     this.service.AddPermis(this.permis).subscribe({
       next:resp => {
-        console.log(resp)
         this.message = "Success !";
         this.route.navigateByUrl("/allPermis")
 

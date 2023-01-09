@@ -66,7 +66,6 @@ export class UpdatePermisComponent implements OnInit {
   this.permis.dateExpiration = this.myform.value.dateExpiration
   this.permis.points = this.myform.value.points
   this.permis.type = this.myform.value.type
-  console.log(this.permis.conducteur)
   this.service.UpdatePermis(this.permis).subscribe({
     next:data=>{
     alert("mise a jour effectuée avec succes");

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { Login } from '../Models/Login';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { Login } from '../Models/Login';
 })
 export class LoginService {
 private host = 'http://127.0.0.1:8009/token';
+isLogged = new BehaviorSubject(false);
 public authenticatedUser:Login |undefined
   constructor(private http:HttpClient, private router: Router) { }
 
@@ -17,6 +18,7 @@ public authenticate(login:Login):Observable<boolean>{
     next:result=>{
       localStorage.clear()
       this.authenticatedUser=login
+      this.isLogged.next(true)
       const Token1 = JSON.stringify(result)
       const Token2 = JSON.parse(Token1)
       localStorage.setItem("jwt", Token2["accessToken"])
@@ -31,18 +33,6 @@ public authenticate(login:Login):Observable<boolean>{
     })
     return of(false)
 } 
-
-/* public GetToken(login:Login){
-  console.log(login)
-  this.http.post(this.host,login).subscribe({
-    next:result=>{
-      console.log(result)
-        },
-        error:error=>{
-          console.log(error)
-        }
-      })
-} */
 
 deleteToken(){
   localStorage.removeItem('jwt')

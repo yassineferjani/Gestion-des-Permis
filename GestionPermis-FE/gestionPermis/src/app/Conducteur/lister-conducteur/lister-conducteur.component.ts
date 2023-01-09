@@ -17,7 +17,7 @@ export class ListerConducteurComponent implements OnInit {
   ngOnInit(): void {
    //this.getallConducteur() 
    this.response$=this.service.conducteurs$.pipe(
-    tap(console.log),
+    //tap(console.log),
     startWith({status:1} as Response)
    );
   }

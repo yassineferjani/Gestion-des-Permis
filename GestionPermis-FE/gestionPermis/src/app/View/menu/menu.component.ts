@@ -7,17 +7,18 @@ import { LoginService } from 'src/app/Services/login.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  isButtonVisible: Boolean =false
+  
+  logged!:boolean 
   constructor(private loginService:LoginService){
-    
+    this.loginService.isLogged.subscribe(res=>{
+      this.logged=res;
+    })
   }
-
-  ngOnInit(): void {
-    
-  }
+ 
+  ngOnInit() {}
   logout(){
-    this.loginService.deleteToken()
-
+    this.loginService.deleteToken();
+    this.loginService.isLogged.next(false)
   }
 
 }

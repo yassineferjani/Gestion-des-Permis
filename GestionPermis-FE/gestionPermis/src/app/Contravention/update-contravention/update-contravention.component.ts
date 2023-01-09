@@ -40,7 +40,6 @@ export class UpdateContraventionComponent implements OnInit {
     next:(res)=>{
       this.contravention=res
       this.date = this.datePipe.transform(this.contravention.date,'yyyy-MM-dd')
-      //console.log(res)
     },
     error:err=>{
       console.log(err);
@@ -54,7 +53,6 @@ export class UpdateContraventionComponent implements OnInit {
   this.contravention.date = this.myform.value.date
   this.contravention.retaitPoints = this.myform.value.retaitPoints
   this.contravention.motif = this.myform.value.motif
-  console.log(this.myform.value.permis)
   this.service.UpdateContravention(this.contravention).subscribe({
     next:data=>{
       

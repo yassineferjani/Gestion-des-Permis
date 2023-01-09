@@ -18,7 +18,6 @@ export class DetailConducteurComponent implements OnInit {
     this.service.get1Conducteur(id).subscribe({
       next:(res)=>{
         this.currentConducteur=res
-        console.log(res)
       },
       error:err=>{
         console.log(err);

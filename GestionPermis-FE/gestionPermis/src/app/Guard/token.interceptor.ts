@@ -4,10 +4,13 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HTTP_INTERCEPTORS
+  HTTP_INTERCEPTORS,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { LoginService } from '../Services/login.service';
+import { Router } from '@angular/router';
+
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -20,8 +23,20 @@ export class TokenInterceptor implements HttpInterceptor {
     if (token != null) {
       authreq = authreq.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
     }
-    console.log(authreq)
-    return next.handle(authreq);
+    return next.handle(authreq).pipe(
+      // hundel token expired
+      catchError(err => {
+        // onError
+         if (err instanceof HttpErrorResponse) {
+           if (err.status===401) {    
+            localStorage.clear();         
+            location.reload();            
+           }
+         }
+        return throwError(err);
+      })
+    );
+  
   }
     }
 

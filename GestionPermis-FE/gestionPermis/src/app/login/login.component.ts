@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
 
 private loginUser!:Login
-invalidLogin!:boolean
+
 form: FormGroup;
 
   constructor(private authService: LoginService, private router: Router, private fb: FormBuilder) {
@@ -41,14 +41,6 @@ form: FormGroup;
       }
       
     })
-    /* this.authService.GetToken(this.loginUser).subscribe((id)=>{
-        
-      this.invalidLogin = id ==="0"
-      if (!this.invalidLogin){
-        this.router.navigate(["/"])
-
-      }
-    }) */
 
   }
 

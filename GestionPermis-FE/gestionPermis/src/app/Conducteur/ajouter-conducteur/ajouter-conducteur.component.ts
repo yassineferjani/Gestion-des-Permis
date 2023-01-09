@@ -33,7 +33,6 @@ export class AjouterConducteurComponent implements OnInit {
     this.service.AddConducteur(this.myform.value).subscribe({
       next:resp => {
         this.conducteur=this.myform.value;
-        console.log(this.conducteur)
         this.message = "Success !";
         this.route.navigateByUrl("/allConducteur")
 
